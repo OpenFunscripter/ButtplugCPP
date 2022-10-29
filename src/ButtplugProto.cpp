@@ -1,4 +1,4 @@
-#include "generated/buttplug_rs_ffi.pb.h"
+#include "buttplug_rs_ffi.pb.h"
 #include "ButtplugProto.h"
 
 using namespace Buttplug;

@@ -10,7 +10,7 @@ include(protobuf-generate)
 
 
 add_library(bp-proto OBJECT "${CMAKE_SOURCE_DIR}/lib/buttplug-rs-ffi/protobuf_schemas/buttplug_rs_ffi.proto")
-set(PROTO_BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}/generated")
+set(PROTO_BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}")
 target_include_directories(bp-proto PUBLIC "$<BUILD_INTERFACE:${PROTO_BINARY_DIR}>")
 target_link_libraries(bp-proto PUBLIC libprotobuf)
 

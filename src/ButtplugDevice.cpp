@@ -1,6 +1,6 @@
 #include "ButtplugDevice.h"
 
-#include "generated/buttplug_rs_ffi.pb.h"
+#include "buttplug_rs_ffi.pb.h"
 
 using namespace Buttplug;
 using namespace google;

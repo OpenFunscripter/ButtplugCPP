@@ -2,7 +2,7 @@
 #include "ButtplugProto.h"
 
 #include <iostream>
-#include "generated/buttplug_rs_ffi.pb.h"
+#include "buttplug_rs_ffi.pb.h"
 
 inline static bool IsDeviceEvent(const Buttplug::ButtplugFFIServerMessage& msg) noexcept
 {
