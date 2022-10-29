@@ -1,0 +1,6 @@
+[submodule "lib/buttplug-rs-ffi"]
+	path = lib/buttplug-rs-ffi
+	url = https://github.com/buttplugio/buttplug-rs-ffi.git
+[submodule "lib/protobuf"]
+	path = lib/protobuf
+	url = https://github.com/protocolbuffers/protobuf.git
