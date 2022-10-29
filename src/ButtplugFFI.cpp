@@ -1,6 +1,7 @@
 #include "ButtplugFFI.h"
 #include "dylib.hpp"
 #include <memory>
+#include <iostream>
 
 using namespace Buttplug;
 static std::unique_ptr<dylib> ButtplugFFILib = nullptr;
@@ -16,7 +17,15 @@ Buttplug::ActivateEnvLogger FFI::ActivateEnvLogger = nullptr;
 bool FFI::Init() 
 {
     if(!ButtplugFFILib) {
-        ButtplugFFILib = std::make_unique<dylib>("./", "buttplug_rs_ffi");
+        try
+        {
+            ButtplugFFILib = std::make_unique<dylib>("./", "buttplug_rs_ffi");
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
+            return false;
+        }
     }
 
     if(!ButtplugFFILib->has_symbol("buttplug_create_protobuf_client")) 
