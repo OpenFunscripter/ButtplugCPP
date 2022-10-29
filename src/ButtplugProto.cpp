@@ -37,7 +37,7 @@ DeferredSender Protocol::SendMessage(Buttplug::ClientHandle clientHandle, Buttpl
         arena->Reset(); msg = nullptr;
         return Buttplug::DeferredSender{id, std::move(send)};
     }
-    throw std::exception("Failed to serialize message.");
+    throw std::runtime_error("Failed to serialize message.");
 }
 
 DeferredSender Protocol::SendConnectWebsocket(Buttplug::ClientHandle clientHandle, const std::string& address, bool bypass_ssl, Buttplug::Callback cb, void* ctx) 
