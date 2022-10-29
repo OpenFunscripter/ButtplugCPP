@@ -38,3 +38,7 @@ target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
 if(MSVC)
   target_compile_options(${PROJECT_NAME} PRIVATE /W2 /WX)
 endif()
+
+if(UNIX AND NOT APPLE)
+  target_link_libraries(${PROJECT_NAME} PRIVATE dl)
+endif()
