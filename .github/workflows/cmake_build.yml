@@ -1,0 +1,84 @@
+name: CMake
+
+on: 
+  push: {}
+  pull_request: {}
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  macos:
+    runs-on: macos-latest
+          
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: 'true'
+        fetch-depth: 0
+    
+    - name: Install Dependencies
+      run: echo "No dependencies needed :^)"
+        
+    - name: Create Build Environment
+      run: cmake -E make_directory ${{runner.workspace}}/build
+
+    - name: Configure CMake
+      shell: bash
+      working-directory: ${{runner.workspace}}/build
+      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+
+    - name: Build ButtplugCppTest
+      working-directory: ${{runner.workspace}}/build
+      shell: bash
+      run: |
+        cmake --build . --config $BUILD_TYPE --target "ButtplugCppTest"
+    
+  linux:
+    runs-on: ubuntu-20.04
+    
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: 'true'
+        fetch-depth: 0
+
+    - name: Install Dependencies
+      run: echo "No dependencies needed :^)"
+        
+    - name: Create Build Environment
+      run: cmake -E make_directory ${{runner.workspace}}/build
+
+    - name: Configure CMake
+      shell: bash
+      working-directory: ${{runner.workspace}}/build
+      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+
+    - name: Build ButtplugCppTest
+      working-directory: ${{runner.workspace}}/build
+      shell: bash
+      run: |
+        cmake --build . --config $BUILD_TYPE --target "ButtplugCppTest"
+
+    
+  windows:
+    runs-on: windows-2019
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: 'true'
+        fetch-depth: 0
+    
+    - name: Create Build Environment
+      run: cmake -E make_directory ${{runner.workspace}}/build
+
+    - name: Configure CMake
+      shell: bash
+      working-directory: ${{runner.workspace}}/build
+      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE -G "Visual Studio 16 2019" -A x64
+
+    - name: Build ButtplugCppTest
+      working-directory: ${{runner.workspace}}/build
+      shell: bash
+      run: |
+        cmake --build . --config $BUILD_TYPE --target "ButtplugCppTest"
